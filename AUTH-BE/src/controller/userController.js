@@ -1,6 +1,7 @@
 import UserModel from '../models/userModel.js'
 import Auth from '../helper/auth.js'
 import Randomstring from 'randomstring'
+import stringMail from '../helper/EmailService.js'
 
 const getAllUsers = async(req,res)=>{
     try {
@@ -95,10 +96,11 @@ const forgotPassword = async(req, res) => {
     try {
         const {email} = req.body
         const user = await UserModel.find({email:email})
-        console.log(user);
+        // console.log(user);
         if(user){
             req.body.randomString = await Randomstring.generate(20)                    
             let updateUser = await UserModel.updateOne({ email:email},{$set: {randomString : req.body.randomString}})
+            
             res.status(200).send({
                 message:"Email exists",
                 name:user.name,
@@ -106,6 +108,7 @@ const forgotPassword = async(req, res) => {
                 role:user.role,
                 randomString: user.randomString
             })
+            await stringMail(req.body.email,req.body.randomString)
         }else{
             res.status(400).send({
                 message:`User with ${req.body.email} does not exists!!!`
