@@ -17,7 +17,7 @@ let mail = async(to,randomString) => {
             from: 'vijayeswarybe@gmail.com',
             to: to,
             subject: 'Sending Email using Node.js',
-            html: `<div><h3>Hi Greetings</h3></div>
+            html: `<div><h3>Hi sir/mam</h3></div>
             <div>
               <p>Please click the below link to reset password</p>
               <a href="#">${randomString}</a>     
