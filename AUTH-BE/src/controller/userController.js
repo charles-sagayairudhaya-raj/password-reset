@@ -122,10 +122,35 @@ const forgotPassword = async(req, res) => {
     }
 }
 
+const verifyCode = async(req, res) => {
+    try {
+        const {randomString} = req.body
+        const user = await UserModel.findOne({randomString:randomString})
+        if(user.randomString === req.body.randomString){
+                res.status(200).send({
+                    message:"RandomString Matches",
+                    role:user.role,
+                    id :user._id,
+                    randomString : user.randomString
+                })
+        }else{
+            res.status(400).send({
+                message:`User with code does not exists`
+            })
+        }        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in logging in",
+            error : error.message
+        })
+    }
+}
+
 export default {
     createUser,
     login,
     getAllUsers,
     getUserById,
-    forgotPassword
+    forgotPassword,
+    verifyCode
 }

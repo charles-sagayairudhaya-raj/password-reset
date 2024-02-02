@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import AxiosService from '../utils/AxiosService';
 import ApiRoutes from '../utils/ApiRoutes';
 
 function ForgotPassword() {  
 
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
   const handleCode = async(e) => {
       try {
         e.preventDefault()
@@ -35,11 +35,33 @@ function ForgotPassword() {
       }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async(e) => {
+    try{
+      e.preventDefault()
       const formData = new FormData(e.target)
       const formProps = Object.fromEntries(formData)
       console.log(formProps);
+      
+
+      // let response = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
+      //   console.log(response);
+
+        // if(res.status === 200){
+        //   toast.success(res.data.message)
+        //   // sessionStorage.setItem('token',res.data.token)
+        //   sessionStorage.setItem('randomString',res.data.randomString)
+        //   sessionStorage.setItem('email',res.data.email)
+        //   // navigate('/')
+        //   toast.success("Random string Verified")
+        // }else{
+        //   console.log("eroroevcd");
+        // }
+     
+    } catch (error) {
+      console.log("err");
+      // console.log(error);
+      // toast.error(error.response.data.message || error.message)
+    }
   }
 
   return <>

@@ -9,5 +9,6 @@ router.get('/:id',Auth.authenticate,userController.getUserById)
 router.post('/createUser',userController.createUser)
 router.post('/login',userController.login)
 router.put('/forgotPassword',userController.forgotPassword)
+router.post('/verifyCode',userController.verifyCode)
 
 export default router
