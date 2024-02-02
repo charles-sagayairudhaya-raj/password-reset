@@ -6,6 +6,7 @@ import {Navigate} from 'react-router-dom'
 import AdminProtectedRoute from './AdminProtectedRoute'
 import UserProtectedRoute from './UserProtectedRoute'
 import ForgotPassword from '../components/ForgotPassword'
+import PasswordReset from '../components/PasswordReset'
 
 const AppRoutes = [
     {
@@ -19,6 +20,10 @@ const AppRoutes = [
     {
         path: '/forgotPassword',
         element : <ForgotPassword/>
+    },
+    {
+        path: '/passwordReset',
+        element : <PasswordReset/>
     },
     {
         path: '/adminDashboard',

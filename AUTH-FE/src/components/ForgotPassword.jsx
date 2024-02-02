@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { toast } from 'react-toastify';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AxiosService from '../utils/AxiosService';
 import ApiRoutes from '../utils/ApiRoutes';
 
 function ForgotPassword() {  
 
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
   const handleCode = async(e) => {
       try {
         e.preventDefault()
@@ -35,13 +35,15 @@ function ForgotPassword() {
       }
   }
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async(ele) => {
     try{
-      e.preventDefault()
-      const formData = new FormData(e.target)
+      ele.preventDefault()
+      const formData = new FormData(ele.target)
       const formProps = Object.fromEntries(formData)
       console.log(formProps);
       
+      let res = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
+      console.log(res);
 
       // let response = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
       //   console.log(response);
@@ -68,6 +70,7 @@ function ForgotPassword() {
     <Card style={{ width: '90%',margin : "auto",marginTop:"10%" }}>
       <Card.Body>
         <Card.Title className='text-center'>Forgot Password</Card.Title>
+
         <Form onSubmit={handleCode}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -75,12 +78,12 @@ function ForgotPassword() {
           </Form.Group>
           <Button variant="primary" type="submit">Send Code</Button>      
         </Form>
+
         <Form onSubmit={handleSubmit} className='mt-5'>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Enter code from email</Form.Label>
             <Form.Control type="text" placeholder="Enter code" name="random String" />
           </Form.Group>
-
           <Button variant="success" type="submit">Submit</Button>      
         </Form>
       </Card.Body>

@@ -16,7 +16,7 @@ let mail = async(to,randomString) => {
         let mailContent = await transporter.sendMail({
             from: 'vijayeswarybe@gmail.com',
             to: to,
-            subject: 'Sending Email using Node.js',
+            subject: 'Code to reset password',
             html: `<div><h3>Hi sir/mam</h3></div>
             <div>
               <p>To reset your password, Kindly copy the below code and paste it in respective column in our website</p>
@@ -25,10 +25,11 @@ let mail = async(to,randomString) => {
             </div>
             `
         }) 
-
-        console.log(mailContent.messageId, " - email sent");
+        alert("Please check the your mail")
+        // console.log(mailContent.messageId, " - email sent");
     } catch (error) {
-        console.log(error.message);
+        alert(error.message);
+        
     }
 }
 
