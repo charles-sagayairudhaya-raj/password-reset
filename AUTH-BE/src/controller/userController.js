@@ -70,7 +70,8 @@ const login = async(req, res) => {
                     message:"Login successfull",
                     token,
                     role:user.role,
-                    id :user._id
+                    id :user._id,
+                    randomString : user.randomString
                 })
             }else{
                 res.status(400).send({
