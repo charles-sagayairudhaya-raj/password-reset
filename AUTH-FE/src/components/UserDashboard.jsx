@@ -41,7 +41,7 @@ function UserDashboard() {
     <div>Email - {user.email}</div>
     <div>Status - {user.status?"Active":"Inactive"}</div>
     <div>Role - {user.role}</div>
-    <div>Role - {user.randomString}</div>
+    <div>Random string - {user.randomString}</div>
     </Container>
   </>
 }
