@@ -17,7 +17,13 @@ let mail = async(to,randomString) => {
             from: 'vijayeswarybe@gmail.com',
             to: to,
             subject: 'Sending Email using Node.js',
-            html: `<h3>That was easy! ${randomString}</h3>`
+            html: `<div><h3>Hi Greetings</h3></div>
+            <div>
+              <p>Please click the below link to reset password</p>
+              <a href="#">${randomString}</a>     
+              <p>Thanks!!!</p>       
+            </div>
+            `
         }) 
 
         console.log(mailContent.messageId, " - email sent");
