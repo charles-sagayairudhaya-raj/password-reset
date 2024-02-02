@@ -20,7 +20,7 @@ let mail = async(to,randomString) => {
             html: `<div><h3>Hi sir/mam</h3></div>
             <div>
               <p>To reset your password, Kindly copy the below code and paste it in respective column in our website</p>
-              <a href='${process.env.WEB_URL}>${randomString}</a>     
+              <a href=${process.env.WEB_URL}>${randomString}</a>     
               <p>Thanks!!!</p>       
             </div>
             `
