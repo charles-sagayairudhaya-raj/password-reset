@@ -10,32 +10,33 @@ import ApiRoutes from '../utils/ApiRoutes';
 function ForgotPassword() {  
 
   let navigate = useNavigate()
+
   const handleCode = async(e) => {
-      try {
-        e.preventDefault()
-        const formData = new FormData(e.target)
-        const formProps = Object.fromEntries(formData)
-        // console.log(formProps);
+    try {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const formProps = Object.fromEntries(formData)
+      // console.log(formProps);
 
-        let res = await AxiosService.put(`${ApiRoutes.FORGOTPASSWORD.path}`,formProps)
-        // console.log(res);
+      let res = await AxiosService.put(`${ApiRoutes.FORGOTPASSWORD.path}`,formProps)
+      // console.log(res);
 
-        if(res.status === 200){
-          toast.success(res.data.message)
-          // sessionStorage.setItem('token',res.data.token)
-          sessionStorage.setItem('role',res.data.role)
-          sessionStorage.setItem('id',res.data.id)
-          sessionStorage.setItem('email',res.data.email)
-          // navigate('/')
-          toast.success("Random string created")
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(error.response.data.message || error.message)
+      if(res.status === 200){
+        toast.success(res.data.message)
+        // sessionStorage.setItem('token',res.data.token)
+        sessionStorage.setItem('role',res.data.role)
+        sessionStorage.setItem('id',res.data.id)
+        sessionStorage.setItem('email',res.data.email)
+        // navigate('/')
+        toast.success("Random string created")
       }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message || error.message)
+    }
   }
 
-  const handleSubmit = async(ele) => {
+  const handleVerifyCode = async(ele) => {
     try{
       ele.preventDefault()
       const formData = new FormData(ele.target)
@@ -43,21 +44,8 @@ function ForgotPassword() {
       console.log(formProps);
       
       let res = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
-      console.log(res);
-
-      // let response = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
-      //   console.log(response);
-
-        // if(res.status === 200){
-        //   toast.success(res.data.message)
-        //   // sessionStorage.setItem('token',res.data.token)
-        //   sessionStorage.setItem('randomString',res.data.randomString)
-        //   sessionStorage.setItem('email',res.data.email)
-        //   // navigate('/')
-        //   toast.success("Random string Verified")
-        // }else{
-        //   console.log("eroroevcd");
-        // }
+      // console.log(res);
+      console.log(formProps);
      
     } catch (error) {
       console.log("err");
@@ -79,7 +67,7 @@ function ForgotPassword() {
           <Button variant="primary" type="submit">Send Code</Button>      
         </Form>
 
-        <Form onSubmit={handleSubmit} className='mt-5'>
+        <Form onSubmit={handleVerifyCode} className='mt-5'>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Enter code from email</Form.Label>
             <Form.Control type="text" placeholder="Enter code" name="random String" />
