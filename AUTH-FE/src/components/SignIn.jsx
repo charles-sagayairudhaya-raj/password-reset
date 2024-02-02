@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import AxiosService from '../utils/AxiosService';
 import ApiRoutes from '../utils/ApiRoutes';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signin() {
   let navigate = useNavigate()
@@ -15,7 +15,7 @@ function Signin() {
       e.preventDefault()
       const formData = new FormData(e.target)
       const formProps = Object.fromEntries(formData)
-      // console.log(formProps);
+      console.log(formProps);
 
       let res = await AxiosService.post(`${ApiRoutes.SIGNIN.path}`,formProps)
       // console.log(res);
@@ -38,7 +38,7 @@ function Signin() {
   }
 
   return <>
-    <Container>
+    <Container fluid>
       <h2 className='text-center'>Sign-In</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
@@ -54,9 +54,14 @@ function Signin() {
           <Form.Control type="password" placeholder="Password" name='password' />
         </Form.Group>
 
+        <Form.Group className="mb-3">
+          <Link to={'/forgotPassword'}>ForgotPassword</Link>
+        </Form.Group>        
+
         <Button variant="primary" type="submit">
           Submit
         </Button>
+
       </Form>
     </Container>
   </>

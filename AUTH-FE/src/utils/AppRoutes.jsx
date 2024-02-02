@@ -5,6 +5,7 @@ import UserDashboard from '../components/UserDashboard'
 import {Navigate} from 'react-router-dom'
 import AdminProtectedRoute from './AdminProtectedRoute'
 import UserProtectedRoute from './UserProtectedRoute'
+import ForgotPassword from '../components/ForgotPassword'
 
 const AppRoutes = [
     {
@@ -14,6 +15,10 @@ const AppRoutes = [
     {
         path: '/signup',
         element : <SignUp/>
+    },
+    {
+        path: '/forgotPassword',
+        element : <ForgotPassword/>
     },
     {
         path: '/adminDashboard',
