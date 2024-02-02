@@ -7,6 +7,10 @@ const ApiRoutes = {
         path : '/user/createUser',
         authenticate : false
     },
+    FORGOTPASSWORD : {
+        path : '/user/forgotPassword',
+        authenticate : false
+    },
     GETALLUSERS : {
         path : '/user',
         authenticate : true

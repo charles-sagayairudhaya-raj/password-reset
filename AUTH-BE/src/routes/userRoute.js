@@ -8,5 +8,6 @@ router.get('/',Auth.authenticate,Auth.adminGuard,userController.getAllUsers)
 router.get('/:id',Auth.authenticate,userController.getUserById)
 router.post('/createUser',userController.createUser)
 router.post('/login',userController.login)
+router.put('/forgotPassword',userController.forgotPassword)
 
 export default router

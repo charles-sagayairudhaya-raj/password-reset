@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     },
     randomString:{
         type:String,
-        required:[true,"RandomString is required"]
+        required:[false,"RandomString is required"]
     },
     role:{
         type:String,

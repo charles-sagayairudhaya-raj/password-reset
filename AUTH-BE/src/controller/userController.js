@@ -36,7 +36,7 @@ const createUser = async(req, res) => {
         const user = await UserModel.findOne({email: req.body.email})
         if(!user){
             req.body.password = await Auth.createHash(req.body.password)        //generating hash for password
-            req.body.randomString = await Randomstring.generate(20)
+            // req.body.randomString = await Randomstring.generate(20)
             let newUser = await UserModel.create(req.body)
             res.status(200).send({
                 message : "User created successfully"
@@ -71,7 +71,7 @@ const login = async(req, res) => {
                     token,
                     role:user.role,
                     id :user._id,
-                    randomString : user.randomString
+                    // randomString : user.randomString
                 })
             }else{
                 res.status(400).send({
@@ -90,9 +90,39 @@ const login = async(req, res) => {
         })
     }
 }
+
+const forgotPassword = async(req, res) => {
+    try {
+        const {email} = req.body
+        const user = await UserModel.find({email:email})
+        console.log(user);
+        if(user){
+            req.body.randomString = await Randomstring.generate(20)                    
+            let updateUser = await UserModel.updateOne({ email:email},{$set: {randomString : req.body.randomString}})
+            res.status(200).send({
+                message:"Email exists",
+                name:user.name,
+                email :user.email,
+                role:user.role,
+                randomString: user.randomString
+            })
+        }else{
+            res.status(400).send({
+                message:`User with ${req.body.email} does not exists!!!`
+            })
+        }        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in fetching email",
+            error : error.message
+        })
+    }
+}
+
 export default {
     createUser,
     login,
     getAllUsers,
-    getUserById
+    getUserById,
+    forgotPassword
 }

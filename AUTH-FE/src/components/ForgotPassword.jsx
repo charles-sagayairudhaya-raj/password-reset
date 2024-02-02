@@ -2,18 +2,36 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-// import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import AxiosService from '../utils/AxiosService';
+import ApiRoutes from '../utils/ApiRoutes';
 
 function ForgotPassword() {  
 
-  const handleCode = (e) => {
+  let navigate = useNavigate()
+  const handleCode = async(e) => {
       try {
         e.preventDefault()
-      const formData = new FormData(e.target)
-      const formProps = Object.fromEntries(formData)
-      console.log(formProps);
+        const formData = new FormData(e.target)
+        const formProps = Object.fromEntries(formData)
+        // console.log(formProps);
+
+        let res = await AxiosService.put(`${ApiRoutes.FORGOTPASSWORD.path}`,formProps)
+        // console.log(res);
+
+        if(res.status === 200){
+          toast.success(res.data.message)
+          // sessionStorage.setItem('token',res.data.token)
+          sessionStorage.setItem('role',res.data.role)
+          sessionStorage.setItem('id',res.data.id)
+          sessionStorage.setItem('email',res.data.email)
+          // navigate('/')
+          toast.success("Random string created")
+        }
       } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message || error.message)
       }
   }
 
