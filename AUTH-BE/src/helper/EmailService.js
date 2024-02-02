@@ -25,11 +25,10 @@ let mail = async(to,randomString) => {
             </div>
             `
         }) 
-        alert("Please check the your mail")
-        // console.log(mailContent.messageId, " - email sent");
+
+        console.log(mailContent.messageId, " - email sent");
     } catch (error) {
-        alert(error.message);
-        
+        console.log(error.message);
     }
 }
 
