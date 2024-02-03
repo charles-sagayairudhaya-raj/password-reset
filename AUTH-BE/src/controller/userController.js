@@ -126,6 +126,7 @@ const verifyCode = async(req, res) => {
     try {
         const {randomString} = req.body
         const user = await UserModel.findOne({randomString:randomString})
+        // console.log(user,randomString);
         if(user.randomString === req.body.randomString){
                 res.status(200).send({
                     message:"RandomString Matches",
@@ -139,6 +140,7 @@ const verifyCode = async(req, res) => {
             })
         }        
     } catch (error) {
+        console.log(error)
         res.status(500).send({
             message : "Internal server error in logging in",
             error : error.message

@@ -45,12 +45,16 @@ function ForgotPassword() {
       
       let res = await AxiosService.post(`${ApiRoutes.VERIFYCODE.path}`,formProps)
       // console.log(res);
-      console.log(formProps);
+      if(res.status === 200){
+        toast.success(res.data.message)
+        sessionStorage.setItem('role',res.data.role)
+        sessionStorage.setItem('id',res.data.id)
+        navigate('/passwordReset')        
+      }
      
     } catch (error) {
-      console.log("err");
       // console.log(error);
-      // toast.error(error.response.data.message || error.message)
+      toast.error(error.response.data.message || error.message)
     }
   }
 
@@ -70,7 +74,7 @@ function ForgotPassword() {
         <Form onSubmit={handleVerifyCode} className='mt-5'>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Enter code from email</Form.Label>
-            <Form.Control type="text" placeholder="Enter code" name="random String" />
+            <Form.Control type="text" placeholder="Enter code" name="randomString" />
           </Form.Group>
           <Button variant="success" type="submit">Submit</Button>      
         </Form>
