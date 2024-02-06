@@ -7,10 +7,9 @@ const transporter = nodemailer.createTransport({
         user: 'vijayeswarybe@gmail.com',
         pass: 'fogaxljrtqwrblqr'        //foga xljr tqwr blqr
       },
-
-      // tls: {
-      //   rejectUnauthorized: false
-      // }
+      tls: {
+        rejectUnauthorized: false
+      }
 });
 
 let mail = async(to,randomString) => {
