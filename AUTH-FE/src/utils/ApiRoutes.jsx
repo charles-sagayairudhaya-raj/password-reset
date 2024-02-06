@@ -15,6 +15,10 @@ const ApiRoutes = {
         path : '/user/verifyCode',
         authenticate : false
     },
+    UPDATEPASSWORD : {
+        path: '/user/updatePassword',
+        authenticate: false
+    },
     GETALLUSERS : {
         path : '/user',
         authenticate : true

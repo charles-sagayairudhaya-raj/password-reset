@@ -148,11 +148,49 @@ const verifyCode = async(req, res) => {
     }
 }
 
+const updatePassword = async(req, res) => {
+    try {
+        const {email,password} = req.body
+        // console.log(req.body);
+        const user = await UserModel.findOne({email:email})
+        // if(user){
+        //     if(await Auth.hashCompare(password,user.password)){
+        //         const token = await Auth.createToken({
+        //             name:user.name,
+        //             email:user.email,
+        //             role:user.role
+        //         })
+        //         res.status(200).send({
+        //             message:"Login successfull",
+        //             token,
+        //             role:user.role,
+        //             id :user._id,
+        //             // randomString : user.randomString
+        //         })
+        //     }else{
+        //         res.status(400).send({
+        //             message: "Inncorrect password"
+        //         })
+        //     }
+        // }else{
+        //     res.status(400).send({
+        //         message:`User with ${req.body.email} does not exists`
+        //     })
+        // }        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in logging in",
+            error : error.message
+        })
+    }
+}
+
 export default {
     createUser,
     login,
     getAllUsers,
     getUserById,
     forgotPassword,
-    verifyCode
+    verifyCode,
+    updatePassword
 }

@@ -10,5 +10,6 @@ router.post('/createUser',userController.createUser)
 router.post('/login',userController.login)
 router.put('/forgotPassword',userController.forgotPassword)
 router.post('/verifyCode',userController.verifyCode)
+router.post('/updatePassword',userController.updatePassword)
 
 export default router
