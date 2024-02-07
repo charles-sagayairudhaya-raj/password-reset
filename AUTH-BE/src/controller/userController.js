@@ -1,7 +1,7 @@
 import UserModel from '../models/userModel.js'
 import Auth from '../helper/auth.js'
 import Randomstring from 'randomstring'
-// import stringMail from '../helper/EmailService.js'
+import stringMail from '../helper/EmailService.js'
 
 const getAllUsers = async(req,res)=>{
     try {
@@ -108,7 +108,7 @@ const forgotPassword = async(req, res) => {
                 role:user.role,
                 randomString: user.randomString
             })
-            // await stringMail(req.body.email,req.body.randomString)
+            await stringMail(req.body.email,req.body.randomString)
         }else{
             res.status(400).send({
                 message:`User with ${req.body.email} does not exists!!!`
