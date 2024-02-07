@@ -1,7 +1,7 @@
 import UserModel from '../models/userModel.js'
 import Auth from '../helper/auth.js'
 import Randomstring from 'randomstring'
-import stringMail from '../helper/EmailService.js'
+// import stringMail from '../helper/EmailService.js'
 
 const getAllUsers = async(req,res)=>{
     try {
