@@ -108,7 +108,7 @@ const forgotPassword = async(req, res) => {
                 role:user.role,
                 randomString: user.randomString
             })
-            await stringMail(req.body.email,req.body.randomString)
+            // await stringMail(req.body.email,req.body.randomString)
         }else{
             res.status(400).send({
                 message:`User with ${req.body.email} does not exists!!!`
