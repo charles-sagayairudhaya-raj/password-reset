@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const AxiosService = axios.create({
-    baseURL: "http://localhost:7000",
-    // baseURL : "https://zen-node-task-4.onrender.com",
+    // baseURL: "http://localhost:7000",
+    baseURL : "https://zen-node-task-4.onrender.com",
     headers : {
         "Content-Type" : "application/json"
     }
