@@ -9,3 +9,4 @@ For user ; "email" : "user@gmail.com",
 
 
 https://api.postman.com/collections/26237981-b6402bee-10e9-40b0-8173-711037f5b689?access_key=PMAT-01HNMPF0KJZ5MCWVJAGNFTTY22
+# password-reset
